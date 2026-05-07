@@ -1,66 +1,163 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ACLC Clinic Information and Medical Inventory Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A browser-based clinic management system developed for **ACLC College of Mandaue**, Mandaue City, Cebu. The system replaces manual logbook-based clinic procedures with a centralized, digital solution for managing student medication requests, inventory monitoring, and report generation.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## About the System
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The system automates the following clinic operations:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Student Medication Requests** — record, approve, reject, and disburse medications with automatic stock deduction
+- **Inventory Management** — track medication stock levels with low-stock and expiration alerts
+- **Categories** — organize medications by category
+- **Reports** — generate downloadable PDF reports for restock needs and student visit logs
+- **Staff Management** — admin can create staff accounts and enable/disable module access per staff
+- **Module Access Control** — admin can toggle access to Categories, Medications, Requests, and Reports for clinic staff
+- **Archive** — soft-delete medications and restore or permanently remove them from the archive
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## User Roles
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+| Role | Access |
+|------|--------|
+| **Admin** | Full access to all modules — manages inventory, categories, staff accounts, medication requests, and generates reports |
+| **Clinic Staff** | Access to assigned modules only — records and processes student medication requests, monitors stock, approves or disburses medications, views reports |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Tech Stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+| Technology | Purpose |
+|------------|---------|
+| Laravel 9 | PHP web framework — backend, routing, authentication, database management |
+| PHP 8.0+ | Server-side scripting language |
+| MySQL (XAMPP) | Relational database — stores all clinic and inventory data |
+| Bootstrap 5.3 | Frontend CSS framework — responsive UI |
+| Bootstrap Icons | Icon library used throughout the UI |
+| barryvdh/laravel-dompdf | PDF generation for restock and visit log reports |
+| Composer | PHP dependency manager |
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Database Tables
 
-## Contributing
+- `users` — admin and clinic staff accounts
+- `categories` — medication categories
+- `medications` — inventory items with stock levels, expiry dates, and low-stock thresholds
+- `medication_requests` — student medication requests with status tracking
+- `medication_request_items` — individual medication items per request
+- `disbursements` — records of dispensed medications
+- `module_settings` — controls which modules are active for staff
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Requirements
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- PHP 8.0+
+- Composer
+- XAMPP (Apache + MySQL)
+- Web browser (Google Chrome recommended)
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Installation
+
+1. **Clone or copy the project** into your XAMPP `htdocs` folder.
+
+2. **Install dependencies:**
+   ```bash
+   composer install
+   ```
+
+3. **Copy the environment file and configure it:**
+   ```bash
+   cp .env.example .env
+   ```
+   Update `.env` with your database credentials:
+   ```
+   DB_DATABASE=your_database_name
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+4. **Generate the application key:**
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Run migrations and seed the database:**
+   ```bash
+   php artisan migrate --seed
+   ```
+   This creates all tables and seeds the default admin account.
+
+6. **Start XAMPP** — make sure Apache and MySQL modules are running.
+
+7. **Access the system** in your browser:
+   ```
+   http://localhost/your-project-folder/public
+   ```
+   Or if using `php artisan serve`:
+   ```
+   http://localhost:8000
+   ```
+
+---
+
+## Default Admin Credentials
+
+After seeding, log in with:
+
+```
+Email:    admin@aclc.edu.ph
+Password: password
+```
+
+> Change the password immediately after first login via **Change Password** in the sidebar.
+
+---
+
+## Networking (Multi-Computer Setup)
+
+The system supports a client-server setup within a local network:
+
+- **Server** — the computer running XAMPP with the database (clinic office / admin PC)
+- **Client** — other computers (clinic staff workstations) accessing the system via browser
+- **Connection** — UTP Cat6 cables with TCP/IP configuration
+- Clients access the system by pointing their browser to the server's local IP address:
+  ```
+  http://<server-ip>/your-project-folder/public
+  ```
+
+> This is an **offline, browser-based system** — no internet connection is required.
+
+---
+
+## Key Features
+
+- ✅ Real-time low-stock and expiration alerts on the dashboard
+- ✅ Full medication request workflow: Pending → Approved → Disbursed / Rejected
+- ✅ Automatic stock deduction on disbursement
+- ✅ Soft-delete archive for medications (restore or permanently delete)
+- ✅ PDF download for restock reports and student visit logs
+- ✅ Module toggle — admin can enable/disable modules for staff
+- ✅ Staff account activation/deactivation
+- ✅ Questionnaire available at `/questionnaire` for system evaluation
+
+---
+
+## Research Context
+
+This system was developed as a capstone project for **ACLC College of Mandaue**. The study uses a **One-Group Pretest-Posttest Design** to evaluate the effectiveness of the system in improving clinic operations — comparing the previous manual logbook process against the automated digital solution.
+
+**Respondents:** 2 Healthcare Staff, 1 Administrator, 20 Students (23 total)
+
+**Evaluation variables:** Accuracy, Efficiency, Reliability, User Satisfaction
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Developed for academic purposes — ACLC College of Mandaue, Mandaue City, Cebu.
