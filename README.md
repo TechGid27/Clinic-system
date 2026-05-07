@@ -106,14 +106,6 @@ The system automates the following clinic operations:
 
 ---
 
-## Default Admin Credentials
-
-After seeding, log in with:
-
-```
-Email:    admin@aclc.edu.ph
-Password: password
-```
 
 > Change the password immediately after first login via **Change Password** in the sidebar.
 
@@ -146,17 +138,7 @@ The system supports a client-server setup within a local network:
 - ✅ Staff account activation/deactivation
 - ✅ Questionnaire available at `/questionnaire` for system evaluation
 
----
 
-## Research Context
-
-This system was developed as a capstone project for **ACLC College of Mandaue**. The study uses a **One-Group Pretest-Posttest Design** to evaluate the effectiveness of the system in improving clinic operations — comparing the previous manual logbook process against the automated digital solution.
-
-**Respondents:** 2 Healthcare Staff, 1 Administrator, 20 Students (23 total)
-
-**Evaluation variables:** Accuracy, Efficiency, Reliability, User Satisfaction
-
----
 
 ## License
 
